@@ -31,11 +31,14 @@ spec:
         app: bp-postgresql
     spec:
       containers:
-        - env:
-            - name: POSTGRES_PASSWORD
-              value: bp
-            - name: POSTGRES_USER
-              value: bp
+        - envFrom:
+            - secretRef:
+                name: bp-postgresql-secrets
+#        - env:
+#            - name: POSTGRES_PASSWORD
+#              value: bp
+#            - name: POSTGRES_USER
+#              value: bp
           image: postgres
           imagePullPolicy: Always
           name: postgres
