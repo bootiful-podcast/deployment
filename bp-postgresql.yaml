@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: bp-postgresql
+  name: postgres-exposed
+spec:
+  ports:
+    - port: 5432
+      protocol: TCP
+      targetPort: 5432
+  selector:
+    app: bp-postgresql
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bp-postgresql
+  name: bp-postgresql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bp-postgresql
+  template:
+    metadata:
+      labels:
+        app: bp-postgresql
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_PASSWORD
+              value: bp
+            - name: POSTGRES_USER
+              value: bp
+          image: postgres
+          imagePullPolicy: Always
+          name: postgres
+          resources: { }
