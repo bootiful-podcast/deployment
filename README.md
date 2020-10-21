@@ -9,6 +9,8 @@ It connects the various applications. Run `deploy_bp_rabbitmq.sh` to get
 an application that's running on Kubernetes. You can talk to it on your 
 local developer machine by doing some port forwarding.  
 
+
+
 ```bash 
 rmq_id=$( k get pods | grep bp-rabbitmq | cut -f1 -d\ )
 kubectl port-forward $rmq_id 15672 5672
