@@ -1,0 +1,52 @@
+name: Deploy Infrastructure
+
+env:
+  ## Basic GKE Coordinates
+  GKE_ZONE: ${{ secrets.GKE_ZONE }}
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
+  GKE_SA_KEY: ${{ secrets.GKE_SA_KEY }}
+  ## PostgreSQL
+  BP_POSTGRES_USERNAME: ${{ secrets.BP_POSTGRES_USERNAME }}
+  BP_POSTGRES_PASSWORD: ${{ secrets.BP_POSTGRES_PASSWORD }}
+  ## RabbitMQ
+  BP_RABBITMQ_MANAGEMENT_USERNAME: ${{ secrets.BP_RABBITMQ_MANAGEMENT_USERNAME }}
+  BP_RABBITMQ_MANAGEMENT_PASSWORD: ${{ secrets.BP_RABBITMQ_MANAGEMENT_PASSWORD }}
+
+on:
+  create:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@master
+        with:
+          node-version: '10.x'
+
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+
+      - run: |-
+          gcloud --quiet auth configure-docker
+
+      - run: |-
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+      - name: Setup GCP environment
+        uses: GoogleCloudPlatform/github-actions@0.1.2
+
+      - name: Deploy Middleware
+        run: |
+          cd $GITHUB_WORKSPACE
+          ./deploy.sh
