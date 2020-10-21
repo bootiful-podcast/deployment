@@ -7,9 +7,7 @@ This repository handles all the deployment concerns beyond each individual servi
 The RabbitMQ service supports the functioning of the whole system. 
 It connects the various applications. Run `deploy_bp_rabbitmq.sh` to get 
 an application that's running on Kubernetes. You can talk to it on your 
-local developer machine by doing some port forwarding. 
-Find the pod for the application.
- 
+local developer machine by doing some port forwarding.  
 
 ```bash 
 rmq_id=$( k get pods | grep bp-rabbitmq | cut -f1 -d\ )
@@ -24,9 +22,10 @@ The following services depend on the RabbitMQ instance:
 
 ## PostgreSQL 
 
-The PostgresSQl service stores working state for the system. 
-You can talk to it on your local developer machine by doing some 
-port forwarding. Find the pod for the application.
+The PostgresSQl service stores working state for the system.
+Run `deploy_bp_postgresql.sh` to get an application that's 
+running on Kubernetes. You can talk to it on your local developer 
+machine by doing some port forwarding. 
 
 ```bash 
 pg_id=$( k get pods | grep bp-postgresql | cut -f1 -d\ )
