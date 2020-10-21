@@ -1,3 +1,16 @@
 #!/usr/bin/env bash
 
-docker run -d --hostname my-rabbit --name some-rabbit rabbitmq:3.8.9
+APP_NAME=bp-rabbitmq
+
+# kill the existing container
+cid=$(  docker ps -a | grep $APP_NAME | cut -f1 -d\ )
+docker rm -f $cid
+
+
+# https://codeburst.io/get-started-with-rabbitmq-on-docker-4428d7f6e46b
+#docker run --rm -it --hostname ${APP_NAME}-leader-node -p 15672:15672 -p 5672:5672 rabbitmq:3.8.9-management
+
+# you should be able to visit the management plugin like so:
+# http://localhost:15672
+
+kubectl apply -f bp-rabbitmq.yaml

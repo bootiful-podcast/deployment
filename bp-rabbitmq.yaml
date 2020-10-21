@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: bp-rabbitmq
+  name: rabbitmq-exposed
+spec:
+  ports:
+
+    - port: 5672
+      name: engine
+      protocol: TCP
+      targetPort: 5672
+
+    - port: 15672
+      name: "management-console"
+      protocol: TCP
+      targetPort: 15672
+
+  selector:
+    app: bp-rabbitmq
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bp-rabbitmq
+  name: bp-rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bp-rabbitmq
+  template:
+    metadata:
+      labels:
+        app: bp-rabbitmq
+    spec:
+      containers:
+        - name: bp-rabbitmq
+          image: rabbitmq:3.8.9-management
+          imagePullPolicy: Always
