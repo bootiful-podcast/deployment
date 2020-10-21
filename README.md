@@ -13,6 +13,7 @@ local developer machine by doing some port forwarding.
 rmq_id=$( k get pods | grep bp-rabbitmq | cut -f1 -d\ )
 kubectl port-forward $rmq_id 15672 5672
 ```
+You can then visit [the management console](http://localhost:15672). 
 
 The following services depend on the RabbitMQ instance:
 
