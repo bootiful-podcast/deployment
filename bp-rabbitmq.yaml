@@ -55,19 +55,19 @@ spec:
       labels:
         app: bp-rabbitmq
     spec:
-#      volumes:
-#
-#        - name: config-volumes
-#          configMap:
-#            name: bp-rabbitmq-configmap
+      volumes:
+
+        - name: config-volumes
+          configMap:
+            name: bp-rabbitmq-configmap
 
       containers:
         - name: bp-rabbitmq
           image: rabbitmq:3.8.9-management
           imagePullPolicy: Always
-#          volumeMounts:
-#            - mountPath: "/etc/rabbitmq/"
-#              name:  config-volumes
-#          envFrom:
-#            - secretRef:
-#                name: bp-rabbitmq-secrets
+          volumeMounts:
+            - mountPath: "/etc/rabbitmq/"
+              name:  config-volumes
+          envFrom:
+            - secretRef:
+                name: bp-rabbitmq-secrets
