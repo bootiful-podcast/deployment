@@ -16,7 +16,6 @@ CONTAINER_NAME=postgres
 #kubectl expose deployment ${APP_NAME} --port=5432 --name=postgres-exposed -o yaml
 #kubectl get deployment -l app=$APP_NAME -o yaml > ${APP_NAME}.yaml
 
-
 kubectl apply -f <(echo "
 ---
 apiVersion: v1
@@ -25,8 +24,8 @@ metadata:
   name: ${APP_NAME}-secrets
 type: Opaque
 stringData:
-  POSTGRES_USER: ${BP_POSTGRES_USERNAME}
-  POSTGRES_PASSWORD: ${BP_POSTGRES_PASSWORD}
+  POSTGRES_USER: ${BP_POSTGRES_USERNAME:-test}
+  POSTGRES_PASSWORD: ${BP_POSTGRES_PASSWORD:-test}
 ")
 
 kubectl apply -f bp-postgresql.yaml

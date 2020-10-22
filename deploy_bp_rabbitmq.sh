@@ -9,6 +9,12 @@ APP_NAME=bp-rabbitmq
 # https://codeburst.io/get-started-with-rabbitmq-on-docker-4428d7f6e46b
 #docker run --rm -it --hostname ${APP_NAME}-leader-node -p 15672:15672 -p 5672:5672 rabbitmq:3.8.9-management
 
+for i in deployment service configmap secret ; do
+  kubectl delete $i $(kubectl get $i | grep $APP_NAME | cut -f1 -d\ ) || \
+      echo "could not find an existing $i to delete for app $APP_NAME"
+done
+
+
 
 kubectl apply -f <(echo "
 ---
@@ -18,15 +24,9 @@ metadata:
   name: ${APP_NAME}-secrets
 type: Opaque
 stringData:
-  RABBITMQ_DEFAULT_USER: ${BP_RABBITMQ_MANAGEMENT_USERNAME}
-  RABBITMQ_DEFAULT_PASS: ${BP_RABBITMQ_MANAGEMENT_PASSWORD}
+  RABBITMQ_DEFAULT_USER: ${BP_RABBITMQ_MANAGEMENT_USERNAME:-guest}
+  RABBITMQ_DEFAULT_PASS: ${BP_RABBITMQ_MANAGEMENT_PASSWORD:-guest}
 ")
-
-##  RABBITMQ_DEFAULT_USER and RABBITMQ_DEFAULT_PASS environmental variables:
-
-
-
-
 
 
 kubectl apply -f bp-rabbitmq.yaml
