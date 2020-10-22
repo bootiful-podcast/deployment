@@ -5,3 +5,4 @@ echo "Deploying PostgreSQL"
 
 echo "Deploying RabbitMQ"
 ./deploy_bp_rabbitmq.sh
+
