@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     app: bp-postgresql
-  name: postgres-exposed
+  name: postgres
 spec:
   ports:
     - port: 5432
