@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: bp-postgresql
+    app:  postgresql
   name: postgres
 spec:
   ports:
@@ -10,7 +10,7 @@ spec:
       protocol: TCP
       targetPort: 5432
   selector:
-    app: bp-postgresql
+    app: postgresql
   type: ClusterIP
 
 ---
@@ -18,22 +18,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: bp-postgresql
-  name: bp-postgresql
+    app: postgresql
+  name: postgresql
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bp-postgresql
+      app: postgresql
   template:
     metadata:
       labels:
-        app: bp-postgresql
+        app: postgresql
     spec:
       containers:
         - envFrom:
             - secretRef:
-                name: bp-postgresql-secrets
+                name: postgresql-secrets
           image: postgres
           imagePullPolicy: Always
           name: postgres

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-APP_NAME=bp-postgresql
+APP_NAME=postgresql
 CONTAINER_NAME=postgres
 
 kubectl apply -f <(echo "

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-APP_NAME=bp-rabbitmq
+APP_NAME=rabbitmq
 
 for i in deployment service configmap secret ; do
   kubectl delete $i $(kubectl get $i | grep $APP_NAME | cut -f1 -d\ ) || \

@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: bp-rabbitmq-configmap
+  name: rabbitmq-configmap
 data:
 
   rabbitmq.conf: |
@@ -19,7 +19,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: bp-rabbitmq
+    app: rabbitmq
   name: rabbitmq
 spec:
   ports:
@@ -35,7 +35,7 @@ spec:
       targetPort: 15672
 
   selector:
-    app: bp-rabbitmq
+    app: rabbitmq
   type: ClusterIP
 
 ---
@@ -43,26 +43,26 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: bp-rabbitmq
-  name: bp-rabbitmq
+    app: rabbitmq
+  name: rabbitmq
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: bp-rabbitmq
+      app: rabbitmq
   template:
     metadata:
       labels:
-        app: bp-rabbitmq
+        app: rabbitmq
     spec:
       volumes:
 
         - name: config-volumes
           configMap:
-            name: bp-rabbitmq-configmap
+            name: rabbitmq-configmap
 
       containers:
-        - name: bp-rabbitmq
+        - name: rabbitmq
           image: rabbitmq:3.8.9-management
           imagePullPolicy: Always
           volumeMounts:
@@ -70,4 +70,4 @@ spec:
               name:  config-volumes
           envFrom:
             - secretRef:
-                name: bp-rabbitmq-secrets
+                name: rabbitmq-secrets
