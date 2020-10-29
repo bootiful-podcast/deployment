@@ -8,7 +8,6 @@ for i in deployment service configmap secret ; do
 done
 
 
-
 kubectl apply -f <(echo "
 ---
 apiVersion: v1
