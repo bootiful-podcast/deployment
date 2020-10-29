@@ -23,21 +23,17 @@ metadata:
   name: rabbitmq
 spec:
   ports:
-
     - port: 5672
       name: engine
       protocol: TCP
       targetPort: 5672
-
     - port: 15672
       name: "management-console"
       protocol: TCP
       targetPort: 15672
-
   selector:
     app: rabbitmq
   type: ClusterIP
-
 ---
 apiVersion: apps/v1
 kind: Deployment
