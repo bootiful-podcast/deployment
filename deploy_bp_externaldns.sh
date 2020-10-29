@@ -17,4 +17,4 @@ gcloud dns record-sets list \
     --name "${ROOT_SUB_DOMAIN}." \
     --type NS
 
-
+kubectl apply -f bp-externaldns.yaml
