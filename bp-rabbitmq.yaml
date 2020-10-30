@@ -35,10 +35,10 @@ spec:
       labels:
         app: rabbitmq
     spec:
-      volumes:
-        - name: config-volumes
-          configMap:
-            name: rabbitmq-configmap
+#      volumes:
+#        - name: config-volumes
+#          configMap:
+#            name: rabbitmq-configmap
       containers:
         - name: rabbitmq
           image: rabbitmq:3.8.9-management
