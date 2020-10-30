@@ -43,9 +43,9 @@ spec:
         - name: rabbitmq
           image: rabbitmq:3.8.9-management
           imagePullPolicy: Always
-          volumeMounts:
-            - mountPath: "/etc/rabbitmq/"
-              name:  config-volumes
+#          volumeMounts:
+#            - mountPath: "/etc/rabbitmq/"
+#              name:  config-volumes
           envFrom:
             - secretRef:
                 name: rabbitmq-secrets
