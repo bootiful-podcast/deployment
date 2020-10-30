@@ -49,3 +49,19 @@ spec:
           envFrom:
             - secretRef:
                 name: rabbitmq-secrets
+#---
+#apiVersion: v1
+#kind: ConfigMap
+#metadata:
+#  name: rabbitmq-configmap
+#data:
+#
+#  rabbitmq.conf: |
+#    loopback_users.guest = false
+#    listeners.tcp.default = 5672
+#    management.listener.port = 15672
+#    management.listener.ssl = false
+#
+##  game.properties: |
+##    enemy.types=aliens,monsters
+##    player.maximum-lives=5
