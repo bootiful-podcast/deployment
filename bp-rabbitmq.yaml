@@ -28,7 +28,7 @@ spec:
       protocol: TCP
       targetPort: 5672
     - port: 15672
-      name: "management-console"
+      name: management
       protocol: TCP
       targetPort: 15672
   selector:
@@ -52,11 +52,9 @@ spec:
         app: rabbitmq
     spec:
       volumes:
-
         - name: config-volumes
           configMap:
             name: rabbitmq-configmap
-
       containers:
         - name: rabbitmq
           image: rabbitmq:3.8.9-management
