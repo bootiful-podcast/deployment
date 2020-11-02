@@ -32,7 +32,6 @@ jobs:
       - name: "set flag from env var"
         run: |
           if [ "${TEST}"  = "1" ] ; then
-#            echo "{name}={value}" >> $GITHUB_ENV
             echo "GOODNESS=true" >> $GITHUB_ENV
           else
             echo "GOODNESS=false" >> $GITHUB_ENV
