@@ -32,9 +32,9 @@ jobs:
       - name: "set flag from env var"
         run: |
           if [ "${TEST}"  = "1" ] ; then
-            echo "::set-env name=GOODNESS::true"
+            echo "name=GOODNESS=true" >> $GITHUB_ENV
           else
-            echo "::set-env name=GOODNESS::false"
+            echo "name=GOODNESS=false" >> $GITHUB_ENV
           fi
 
       - name: "show us what you've got!"
