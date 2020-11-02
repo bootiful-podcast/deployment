@@ -13,7 +13,7 @@ env:
   BP_RABBITMQ_MANAGEMENT_USERNAME: ${{ secrets.BP_RABBITMQ_MANAGEMENT_USERNAME }}
   BP_RABBITMQ_MANAGEMENT_PASSWORD: ${{ secrets.BP_RABBITMQ_MANAGEMENT_PASSWORD }}
 
-  TEST: 1
+  TEST: "1"
 
 on:
   create:
@@ -31,7 +31,7 @@ jobs:
 
       - name: "set flag from env var"
         run: |
-          if ${TEST} == 1 ; then
+          if [ "${TEST}"  = "1" ] ; then
             echo "::set-env name=GOODNESS::true"
           else
             echo "::set-env name=GOODNESS::false"
