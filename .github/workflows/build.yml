@@ -35,7 +35,7 @@ jobs:
           export BP_MODE="development"
 
           if [ "$GITHUB_EVENT_NAME" = "create" ]; then
-              if [[  "${GITHUB_REF}" =~ "tags" ]]; then
+              if [[ "${GITHUB_REF}" =~ "tags" ]]; then
                   BP_MODE="production"
               fi
           fi
@@ -44,7 +44,7 @@ jobs:
 
       - name: "show us what you've got!"
         run: |
-          echo ${GOODNESS:-no 'GOODNESS' to be had}
+          echo ${BP_MODE:-no 'BP_MODE' to be had}
 #
 #      - name: Setup GCP environment
 #        uses: GoogleCloudPlatform/github-actions@0.1.2
