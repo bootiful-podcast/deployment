@@ -37,7 +37,6 @@ jobs:
             echo "::set-env name=GOODNESS::false"
           fi
 
-
       - name: "show us what you've got!"
         run: |
           echo ${GOODNESS:-no 'GOODNESS' to be had}
