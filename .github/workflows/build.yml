@@ -31,11 +31,16 @@ jobs:
 
       - name: "set flag from env var"
         run: |
-          if [ "${TEST}"  = "1" ] ; then
-            echo "GOODNESS=true" >> $GITHUB_ENV
-          else
-            echo "GOODNESS=false" >> $GITHUB_ENV
+
+          export BP_MODE="development"
+
+          if [ "$GITHUB_EVENT_NAME" = "create" ]; then
+              if [[  "${GITHUB_REF}" =~ "tags" ]]; then
+                  BP_MODE="production"
+              fi
           fi
+
+          echo "BP_MODE=${BP_MODE}" >> $GITHUB_ENV
 
       - name: "show us what you've got!"
         run: |
