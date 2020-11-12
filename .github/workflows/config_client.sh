@@ -28,8 +28,6 @@ function hydrate_environment_from_config_server() {
       || sleep 10
   done
 
-
-#
   while true; do
       successCond="$(kubectl get svc "$SVC_NAME"  --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")"
       if [[ -z "$successCond" ]]; then
@@ -40,8 +38,8 @@ function hydrate_environment_from_config_server() {
           export IP_OF_CONFIG_SERVER=${successCond}
           echo "The external IP is up! ${successCond}"
           break
-      fi
-#
+    fi
+  done
 
   echo "------"
   echo $IP_OF_CONFIG_SERVER
