@@ -28,6 +28,21 @@ function hydrate_environment_from_config_server() {
       || sleep 10
   done
 
+
+#
+  while true; do
+      successCond="$(kubectl get svc "$SVC_NAME"  --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")"
+      if [[ -z "$successCond" ]]; then
+          echo "Waiting for endpoint readiness..."
+          sleep 10
+      else
+          sleep 2
+          export IP_OF_CONFIG_SERVER=${successCond}
+          echo "The external IP is up! ${successCond}"
+          break
+      fi
+#
+
   echo "------"
   echo $IP_OF_CONFIG_SERVER
   config-client $CONFIGURATION_SERVER_USERNAME $CONFIGURATION_SERVER_PASSWORD deployment \
