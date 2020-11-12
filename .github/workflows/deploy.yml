@@ -65,9 +65,11 @@ jobs:
 
       - name: Deploy Spring Cloud Config Server
         run: |
-          git clone https://github.com/bootiful-podcast/configuration-service.git cs
-          cd cs/deploy
-          ./deploy.sh
+          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
+          deploy_system_app configuration-service
+#          git clone https://github.com/bootiful-podcast/configuration-service.git cs
+#          cd cs/deploy
+#          ./deploy.sh
 
       - name: Connect to Config Server for Configuration
         run: |
@@ -76,27 +78,9 @@ jobs:
           hydrate_environment_from_config_server
 
       - name: Deploy
-        run: ${GITHUB_WORKSPACE}/deploy.sh
-
-#
-#      - name: Deploy Backup PVC
-#        run: ./deploy.sh
-#
-#      - name: Deploy Backup Cronjob
-#        run: ./deploy.sh
-#
-#      - name: Deploy PostgreSQL
-#        run: ./deploy.sh
-#
-#      - name: Deploy RabbitMQ
-#        run: ./deploy.sh
-#
-##
-##      - name: Deploy DNS
-##        run: ./deploy.sh
-#
-
-
+        run: |
+          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
+          ${GITHUB_WORKSPACE}/deploy.sh
 
 
 #      - name: Deploy External DNS

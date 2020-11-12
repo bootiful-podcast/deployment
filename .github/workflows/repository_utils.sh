@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "Loaded repository utils"
+
 function deploy_system_app(){
   APP_NAME=$1
   RESULT=$( curl \

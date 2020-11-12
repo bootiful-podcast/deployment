@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Starting Deployment..."
+source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
 
 ## todo restore the gke bit
 ## todo make sure to replace all $CONFIG_DIR/* with $ROOT_DIR/module_name/*
