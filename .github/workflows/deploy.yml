@@ -69,15 +69,15 @@ jobs:
           source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
           deploy_system_app configuration-service
 
-#
-#      - name: Connect to Config Server for Configuration
-#        run: |
-#          source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
-#          install_config_client_cli
-#          hydrate_environment_from_config_server
-#
-#      - name: Deploy
-#        run: |
-#          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
-#          ${GITHUB_WORKSPACE}/deploy.sh
-#
+
+      - name: Connect to Config Server for Configuration
+        run: |
+          source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
+          install_config_client_cli
+          hydrate_environment_from_config_server
+
+      - name: Deploy
+        run: |
+          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
+          ${GITHUB_WORKSPACE}/deploy.sh
+
