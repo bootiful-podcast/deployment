@@ -68,21 +68,16 @@ jobs:
         run: |
           source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
           deploy_system_app configuration-service
-#          git clone https://github.com/bootiful-podcast/configuration-service.git cs
-#          cd cs/deploy
-#          ./deploy.sh
 
-      - name: Connect to Config Server for Configuration
-        run: |
-          source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
-          install_config_client_cli
-          hydrate_environment_from_config_server
-
-      - name: Deploy
-        run: |
-          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
-          ${GITHUB_WORKSPACE}/deploy.sh
-
-
-#      - name: Deploy External DNS
-#        run: ./deploy_bp_externaldns.sh
+#
+#      - name: Connect to Config Server for Configuration
+#        run: |
+#          source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
+#          install_config_client_cli
+#          hydrate_environment_from_config_server
+#
+#      - name: Deploy
+#        run: |
+#          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
+#          ${GITHUB_WORKSPACE}/deploy.sh
+#
