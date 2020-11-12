@@ -69,7 +69,6 @@ jobs:
           source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
           deploy_system_app configuration-service
 
-
       - name: Connect to Config Server for Configuration
         run: |
           source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
