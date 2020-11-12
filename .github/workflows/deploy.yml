@@ -1,0 +1,103 @@
+name: Deploy Infrastructure
+
+
+# TODO in theory we could seed this build with ONLY configuration_server_*, and with gke_*. \
+# > todo And even those don't need to be defined up here. they could be dynamic based on whether it's a push or a release using the eval trick
+#
+# so:
+# deploy GKE
+# deploy config server
+# use GACC to talk to config server and get env vars for RMQ and PSQL
+# deploy RMQ
+# deploy PSQL
+
+## every other app would only ever need the CONFIGURATION_SERVER_* bits
+
+env:
+  GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
+  GIT_USERNAME: ${{ secrets.GIT_USERNAME }}
+  CONFIGURATION_SERVER_USERNAME: ${{ secrets.CONFIGURATION_SERVER_USERNAME }}
+  CONFIGURATION_SERVER_PASSWORD: ${{ secrets.CONFIGURATION_SERVER_PASSWORD }}
+  GCLOUD_ZONE_DEVELOPMENT: ${{ secrets.GCLOUD_ZONE_DEVELOPMENT }}
+  GCLOUD_PROJECT_DEVELOPMENT: ${{ secrets.GCLOUD_PROJECT_DEVELOPMENT }}
+  GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
+  GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+
+on:
+  create:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: "Setup Initial Environment"
+        run: |
+          source $GITHUB_WORKSPACE/.github/workflows/bp_mode.sh
+
+      - name: Setup GCP environment
+        uses: GoogleCloudPlatform/github-actions@0.1.2
+
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          service_account_key: ${{ secrets.GCLOUD_SA_KEY }}
+          project_id: ${{ secrets.GCLOUD_PROJECT }}
+
+      - run: |
+          gcloud config set project $GCLOUD_PROJECT
+          gcloud --quiet auth configure-docker
+
+      - name: Deploy cluster if it doesn't exist
+        run: |
+          cd $GITHUB_WORKSPACE
+          echo "Deploying the GKE Cluster itself"
+          ./gke/deploy.sh
+
+      - run: |
+          gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project $GCLOUD_PROJECT
+
+      - name: Deploy Spring Cloud Config Server
+        run: |
+          git clone https://github.com/bootiful-podcast/configuration-service.git cs
+          cd cs/deploy
+          ./deploy.sh
+
+      - name: Connect to Config Server for Configuration
+        run: |
+          source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
+          install_config_client_cli
+          hydrate_environment_from_config_server
+
+      - name: Deploy
+        run: ${GITHUB_WORKSPACE}/deploy.sh
+
+#
+#      - name: Deploy Backup PVC
+#        run: ./deploy.sh
+#
+#      - name: Deploy Backup Cronjob
+#        run: ./deploy.sh
+#
+#      - name: Deploy PostgreSQL
+#        run: ./deploy.sh
+#
+#      - name: Deploy RabbitMQ
+#        run: ./deploy.sh
+#
+##
+##      - name: Deploy DNS
+##        run: ./deploy.sh
+#
+
+
+
+
+#      - name: Deploy External DNS
+#        run: ./deploy_bp_externaldns.sh

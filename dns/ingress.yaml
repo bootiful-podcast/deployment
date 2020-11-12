@@ -1,0 +1,52 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    networking.gke.io/managed-certificates: "bootiful-podcast-certificate"
+    kubernetes.io/ingress.global-static-ip-name: "bootiful-podcast-ip"
+  name: bp
+spec:
+  rules:
+  ## You can add as many of these as you like; be sure to check out your
+  ## registrar (Gandi.net, GoDaddy, etc.) and point the DNS A records to the
+  ## virtual host you want (in this case, we can use that one static Google IP worldwide)
+  ## Root
+  - host: bootifulpodcast.online
+    http:
+      paths:
+      - backend:
+          serviceName: api
+          servicePort: 80
+
+  ## API
+  - host: api.bootifulpodcast.online
+    http:
+      paths:
+      - backend:
+          serviceName: api
+          servicePort: 80
+
+  ## API
+  - host: api.development.bootifulpodcast.online
+    http:
+      paths:
+      - backend:
+          serviceName: api
+          servicePort: 80
+
+
+  ## Studio
+  - host: studio.bootifulpodcast.online
+    http:
+      paths:
+      - backend:
+          serviceName: studio
+          servicePort: 80
+
+  - host: studio.development.bootifulpodcast.online
+    http:
+      paths:
+      - backend:
+          serviceName: studio
+          servicePort: 80
