@@ -11,8 +11,15 @@ if [ "$GITHUB_EVENT_NAME" = "create" ]; then
   fi
 fi
 
-if [ "$GITHUB_EVENT_NAME" = "deploy-production-event" ]; then
-  BP_MODE="PRODUCTION"
+if [ "$GITHUB_EVENT_NAME" = "repository_dispatch" ]; then
+
+  EVENT=$(  cat $GITHUB_EVENT_PATH | jq '.action' -r )
+  if  [ "$EVENT" = "deploy-production-event" ]; then
+    BP_MODE="PRODUCTION"
+    echo "I'm on the hiighway to the danger zone!"
+  fi
+
+
 fi
 
 echo $GITHUB_EVENT_NAME
