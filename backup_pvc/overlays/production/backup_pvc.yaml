@@ -4,4 +4,6 @@ metadata:
   name: bp-backup-pv
 spec:
   gcePersistentDisk:
-    pdName: bp-production-backup-disk
+    pdName: bp-development-backup-disk
+    fsType: ext4
+    readOnly: false
