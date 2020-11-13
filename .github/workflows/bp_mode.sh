@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 
 # todo fix this
-# export BP_MODE="DEVELOPMENT"
-export BP_MODE="PRODUCTION"
-
+export BP_MODE="DEVELOPMENT"
+#export BP_MODE="PRODUCTION"
 
 if [ "$GITHUB_EVENT_NAME" = "create" ]; then
   if [[ "${GITHUB_REF}" =~ "tags" ]]; then
     BP_MODE="PRODUCTION"
   fi
 fi
+
+echo $GITHUB_EVENT_NAME
+echo $GITHUB_EVENT_PATH
+cat $GITHUB_EVENT_PATH
 
 
 BP_MODE_LOWERCASE=$(echo "${BP_MODE}" | tr '[:upper:]' '[:lower:]')
