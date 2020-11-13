@@ -56,4 +56,3 @@ echo "GKE_CLUSTER_NAME=${GKE_CLUSTER_NAME}" >> $GITHUB_ENV
 
 
 
-env
