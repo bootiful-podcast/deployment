@@ -4,6 +4,7 @@
 # export BP_MODE="DEVELOPMENT"
 export BP_MODE="PRODUCTION"
 
+
 if [ "$GITHUB_EVENT_NAME" = "create" ]; then
   if [[ "${GITHUB_REF}" =~ "tags" ]]; then
     BP_MODE="PRODUCTION"
@@ -38,3 +39,8 @@ echo "GCLOUD_PROJECT=$GCLOUD_PROJECT" >> $GITHUB_ENV
 # you could bifurcate by cluster name
 GKE_CLUSTER_NAME=bootiful-podcast-${BP_MODE_LOWERCASE}
 echo "GKE_CLUSTER_NAME=${GKE_CLUSTER_NAME}" >> $GITHUB_ENV
+
+
+
+
+env
