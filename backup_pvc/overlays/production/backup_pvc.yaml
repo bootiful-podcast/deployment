@@ -3,7 +3,15 @@ kind: PersistentVolume
 metadata:
   name: bp-backup-pv
 spec:
+  storageClassName: ""
+  capacity:
+    storage: 200Gi
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: default
+    name: bp-backup-pvc
   gcePersistentDisk:
-    pdName: bp-development-backup-disk
+    pdName: bp-production-backup-disk
     fsType: ext4
     readOnly: false

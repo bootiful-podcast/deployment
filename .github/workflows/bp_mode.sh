@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # todo fix this
-export BP_MODE="DEVELOPMENT"
-#export BP_MODE="PRODUCTION"
+#export BP_MODE="DEVELOPMENT"
+export BP_MODE="PRODUCTION"
 
 if [ "$GITHUB_EVENT_NAME" = "create" ]; then
   if [[ "${GITHUB_REF}" =~ "tags" ]]; then
