@@ -27,6 +27,8 @@ env:
 
 
 on:
+  repository_dispatch:
+    types: [ deploy-production-event, deploy-development-event ]
   create:
   push:
     branches: [ master ]

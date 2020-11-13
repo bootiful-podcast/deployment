@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
 
 # todo fix this
-#export BP_MODE="DEVELOPMENT"
-export BP_MODE="PRODUCTION"
+export BP_MODE="DEVELOPMENT"
+#export BP_MODE="PRODUCTION"
 
+## so you can either push a tag or issue a dispatch event
 if [ "$GITHUB_EVENT_NAME" = "create" ]; then
   if [[ "${GITHUB_REF}" =~ "tags" ]]; then
     BP_MODE="PRODUCTION"
   fi
+fi
+
+if [ "$GITHUB_EVENT_NAME" = "deploy-production-event" ]; then
+  BP_MODE="PRODUCTION"
 fi
 
 echo $GITHUB_EVENT_NAME
