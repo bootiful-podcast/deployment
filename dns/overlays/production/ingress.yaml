@@ -3,17 +3,12 @@ kind: Ingress
 metadata:
   annotations:
     ingress.kubernetes.io/force-ssl-redirect: "true"
-    networking.gke.io/managed-certificates: "bootiful-podcast-production-certificate"
+    networking.gke.io/managed-certificates: "bootiful-podcast-certificate"
     kubernetes.io/ingress.global-static-ip-name: "bootiful-podcast-production-ip"
   name: bp
 spec:
   rules:
-  - host: bootifulpodcast.online
-    http:
-      paths:
-      - backend:
-          serviceName: api
-          servicePort: 80
+
   - host: api.bootifulpodcast.online
     http:
       paths:
