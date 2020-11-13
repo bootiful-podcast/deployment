@@ -17,7 +17,6 @@ deploy_system_app configuration-service
 install_config_client_cli
 hydrate_environment_from_config_server
 
-${GITHUB_WORKSPACE}/deploy.sh
 
 $ROOT_DIR/backup_pvc/deploy.sh
 $ROOT_DIR/postgresql/deploy.sh
