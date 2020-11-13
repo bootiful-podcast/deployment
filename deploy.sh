@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+
+export BP_MODE=PRODUCTION
+
 source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
 source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
 
