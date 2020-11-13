@@ -45,5 +45,8 @@ function hydrate_environment_from_config_server() {
   echo $IP_OF_CONFIG_SERVER
   config-client $CONFIGURATION_SERVER_USERNAME $CONFIGURATION_SERVER_PASSWORD deployment \
     $BP_MODE_LOWERCASE http://${IP_OF_CONFIG_SERVER} $GITHUB_ENV
+
+  cat $GITHUB_ENV | while read l; do eval "export $l ;" done ;
+
   echo "------"
 }
