@@ -1,0 +1,5 @@
+---
+bases:
+  - ../development/
+patchesStrategicMerge:
+  - backup_pvc.yaml

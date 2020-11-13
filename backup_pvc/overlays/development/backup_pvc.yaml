@@ -12,7 +12,7 @@ spec:
     namespace: default
     name: bp-backup-pvc
   gcePersistentDisk:
-    pdName: bp-backup-disk
+    pdName: bp-development-backup-disk
     fsType: ext4
     readOnly: false
 ---
