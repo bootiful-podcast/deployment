@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-export BP_MODE="DEVELOPMENT"
+# todo fix this
+# export BP_MODE="DEVELOPMENT"
+export BP_MODE="PRODUCTION"
 
 if [ "$GITHUB_EVENT_NAME" = "create" ]; then
   if [[ "${GITHUB_REF}" =~ "tags" ]]; then
     BP_MODE="PRODUCTION"
   fi
 fi
+
 
 BP_MODE_LOWERCASE=$(echo "${BP_MODE}" | tr '[:upper:]' '[:lower:]')
 echo "BP_MODE_LOWERCASE=$BP_MODE_LOWERCASE"  >> $GITHUB_ENV
