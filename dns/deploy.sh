@@ -11,7 +11,5 @@ gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_
 
 KC=${ROOT_DIR}/dns/overlays/${BP_MODE_LOWERCASE}/
 
-# ls -la $KC
-# echo $KC
 
 kubectl apply -k $KC

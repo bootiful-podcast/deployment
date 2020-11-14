@@ -19,7 +19,7 @@ spec:
 #          serviceName: api
 #          servicePort: 80
 
-  - host: development.api.bootifulpodcast.online
+  - host: api.development.bootifulpodcast.online
     http:
       paths:
       - backend:
@@ -27,7 +27,7 @@ spec:
           servicePort: 80
 
 
-  - host: development.studio.bootifulpodcast.online
+  - host: studio.development.bootifulpodcast.online
     http:
       paths:
       - backend:
