@@ -25,7 +25,7 @@ A logical next step would be to investigate using
 [the OSS RabbitMQ Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/install-operator.html) 
 to deploy a RabbitMQ instance.
 
-## PostgreSQL 
+## PostgreSQL
 
 The PostgresSQl service stores working state for the system.
 Run `deploy_bp_postgresql.sh` to get an application that's 
