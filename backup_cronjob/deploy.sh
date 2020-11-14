@@ -21,4 +21,7 @@ kubectl apply -f  backup_cronjob.yaml
 
 ##
 echo "Going to run the cronjob (backup-cronjob) one time upfront before waiting for the scheduled to run."
-kubectl create job --from=cronjob/backup-cronjob backup-cronjob-initial-run-job
+
+BACKUP_JOB_NAME=backup-cronjob-initial-run-job
+kubectl get job $BACKUP_JOB_NAME && kubectl delete job $BACKUP_JOB_NAME
+kubectl create job --from=cronjob/backup-cronjob $BACKUP_JOB_NAME
