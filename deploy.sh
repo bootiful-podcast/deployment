@@ -21,4 +21,10 @@ deploy_system_app api-v2
 deploy_system_app site-generator-v2
 deploy_system_app processor-v2
 
+## TODO
+## we don't know how long it'll take for all the various apps to spin up and
+## register healthy on their health checks so that DNS/ingress work out
+sleep 180
+
+
 $ROOT_DIR/dns/deploy.sh
