@@ -1,5 +1,0 @@
----
-bases:
-  - ../development/
-patchesStrategicMerge:
-  - certificate.yaml

@@ -9,15 +9,16 @@ metadata:
 spec:
   rules:
 
-  - host: api.bootifulpodcast.online
-    http:
-      paths:
-      - backend:
-          serviceName: api
-          servicePort: 80
-  - host: studio.bootifulpodcast.online
-    http:
-      paths:
-      - backend:
-          serviceName: studio
-          servicePort: 80
+    - host: api.bootifulpodcast.online
+      http:
+        paths:
+          - backend:
+              serviceName: api
+              servicePort: 80
+
+    - host: studio.bootifulpodcast.online
+      http:
+        paths:
+          - backend:
+              serviceName: studio
+              servicePort: 80
