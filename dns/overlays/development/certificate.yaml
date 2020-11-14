@@ -1,9 +1,8 @@
 apiVersion: networking.gke.io/v1beta2
 kind: ManagedCertificate
 metadata:
-  name: bootiful-podcast-certificate
+  name: bootiful-podcast-development-certificate
 spec:
   domains:
   - studio.development.bootifulpodcast.online
   - api.development.bootifulpodcast.online
-

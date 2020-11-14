@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   annotations:
     ingress.kubernetes.io/force-ssl-redirect: "true"
-    networking.gke.io/managed-certificates: "bootiful-podcast-certificate"
+    networking.gke.io/managed-certificates: "bootiful-podcast-production-certificate"
     kubernetes.io/ingress.global-static-ip-name: "bootiful-podcast-production-ip"
   name: bp
 spec:
