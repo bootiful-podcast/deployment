@@ -26,5 +26,4 @@ deploy_system_app processor-v2
 ## register healthy on their health checks so that DNS/ingress work out
 sleep 180
 
-
 $ROOT_DIR/dns/deploy.sh
