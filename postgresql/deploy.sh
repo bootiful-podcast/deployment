@@ -13,13 +13,12 @@ SECRETS_NAME=${APP_NAME}-secrets
 
 kubectl delete deployment.apps/${APP_NAME} || echo "Could not delete the existing deployment"
 
-kubectl delete service/postgres || echo "Could not delete old service"
-kubectl delete deployment.apps/postgresql || echo "Could not delete old deployment "
-kubectl delete secrets/${SECRETS_NAME} || echo "Could not delete old ${SECRETS_NAME}."
-kubectl delete configmap/${CONFIG_MAP_NAME} || echo "Could not delete old ${CONFIG_MAP_NAME}."
-
-kubectl get configmap/${CONFIG_MAP_NAME} | grep $CONFIG_MAP_NAME || kubectl create configmap $CONFIG_MAP_NAME --from-file $ROOT_DIR/postgresql/bin/
-kubectl get configmap/${CONFIG_MAP_NAME} -o yaml
+#kubectl delete service/postgres || echo "Could not delete old service"
+#kubectl delete deployment.apps/postgresql || echo "Could not delete old deployment "
+#kubectl delete secrets/${SECRETS_NAME} || echo "Could not delete old ${SECRETS_NAME}."
+#kubectl delete configmap/${CONFIG_MAP_NAME} || echo "Could not delete old ${CONFIG_MAP_NAME}."
+#kubectl get configmap/${CONFIG_MAP_NAME} | grep $CONFIG_MAP_NAME || kubectl create configmap $CONFIG_MAP_NAME --from-file $ROOT_DIR/postgresql/bin/
+#kubectl get configmap/${CONFIG_MAP_NAME} -o yaml > configmap.yaml
 
 kubectl apply -f <(echo "
 ---
@@ -33,5 +32,5 @@ stringData:
   POSTGRES_USER: ${BP_POSTGRES_USERNAME}
   POSTGRES_PASSWORD: ${BP_POSTGRES_PASSWORD}
 ")
-
+kubectl apply -f configmap.yaml
 kubectl apply -f postgresql.yaml
