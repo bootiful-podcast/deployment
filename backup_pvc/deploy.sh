@@ -3,6 +3,7 @@
 set -e
 set -o pipefail
 
+
 echo "Deploying Backup PVC..."
 
 FS_NAME="bp-${BP_MODE_LOWERCASE}-backup-disk"
