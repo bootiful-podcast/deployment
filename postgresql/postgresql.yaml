@@ -32,7 +32,7 @@ spec:
         app: postgresql
     spec:
       volumes:
-        - name: postgresql-init-db-configmap
+        - name: postgresql-configmap-volume
           configMap:
             name: postgresql-init-db-configmap
             items:
