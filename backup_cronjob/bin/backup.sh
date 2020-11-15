@@ -49,6 +49,7 @@ function backup_db() {
 }
 
 psql -v ON_ERROR_STOP=0 -U ${POSTGRES_USER} -h ${POSTGRES_SERVICE_HOST} -p ${POSTGRES_SERVICE_PORT} ${POSTGRES_DB} -tc " select count(*) from information_schema.tables where table_schema = 'public' " | grep -q 0 && initialize_db || echo "could not initialize DB, step 1"
+
 psql -v ON_ERROR_STOP=0 -U ${POSTGRES_USER} -h ${POSTGRES_SERVICE_HOST} -p ${POSTGRES_SERVICE_PORT} ${POSTGRES_DB} -tc " select count(*) from  podcast  " | grep -q 0 && initialize_db || echo "could not initialize DB, step 2"
 
 backup_db
