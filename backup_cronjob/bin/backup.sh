@@ -32,7 +32,7 @@ function backup_db() {
   BACKUP_ROOT_FN=$(backup_date_string)
   BACKUP=$BACKUPS_DIR/${BACKUP_ROOT_FN}.sql
   BACKUP_TGZ=$BACKUPS_DIR/${BACKUP_ROOT_FN}.tgz
-  echo "Saving to ${BACKUP} "
+  echo "Saving to ${BACKUP}"
   TMP_BACKUP=mybackup.sql
 
   pg_dump -U ${POSTGRES_USER} -h ${POSTGRES_SERVICE_HOST} -p ${POSTGRES_SERVICE_PORT} --format=plain -d ${POSTGRES_DB} >$TMP_BACKUP
