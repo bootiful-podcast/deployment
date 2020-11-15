@@ -28,7 +28,7 @@ function initialize_db() {
 }
 
 function backup_db() {
-  echo "BACKUP BEGINNING...."
+  echo "BACKUP STARTING"
   BACKUP_ROOT_FN=$(backup_date_string)
   BACKUP=$BACKUPS_DIR/${BACKUP_ROOT_FN}.sql
   BACKUP_TGZ=$BACKUPS_DIR/${BACKUP_ROOT_FN}.tgz
@@ -45,6 +45,10 @@ function backup_db() {
 
   tar -c $BACKUP | gzip -9 > $BACKUP_TGZ
   rm $BACKUP
+
+  cat $LATEST_SQL
+
+  echo "BACKUP FINISHED"
 
 }
 
