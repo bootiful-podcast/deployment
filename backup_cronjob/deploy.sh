@@ -17,7 +17,7 @@ kubectl get configmaps/${CONFIG_MAP_NAME} | grep $CONFIG_MAP_NAME || \
 echo "did the configmap create?"
 kubectl get configmaps/${CONFIG_MAP_NAME}
 
-kubectl apply -f  backup_cronjob.yaml
+kubectl apply -f backup_cronjob.yaml
 
 ##
 echo "Going to run the cronjob (backup-cronjob) one time upfront before waiting for the scheduled to run."
