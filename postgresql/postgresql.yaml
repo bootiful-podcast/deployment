@@ -34,7 +34,7 @@ spec:
       volumes:
         - name: postgresql-init-db-configmap
           configMap:
-            name: postgresql-configmap
+            name: postgresql-init-db-configmap
             items:
               - key: "init_db.sh"
                 path: "init_db.sh"
