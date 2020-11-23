@@ -52,7 +52,7 @@ jobs:
       - name: Setup GCP environment
         uses: GoogleCloudPlatform/github-actions@0.1.2
 
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@master
         with:
           version: '290.0.1'
           service_account_key: ${{ secrets.GCLOUD_SA_KEY }}
