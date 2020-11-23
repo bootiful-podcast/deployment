@@ -3,7 +3,7 @@
 
 
 source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
-source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
+# source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
 
 export ROOT_DIR=$(cd ${GITHUB_WORKSPACE:-$(dirname $0)} && pwd )
 
