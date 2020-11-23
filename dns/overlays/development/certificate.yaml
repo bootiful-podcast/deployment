@@ -4,5 +4,6 @@ metadata:
   name: bootiful-podcast-development-certificate
 spec:
   domains:
-  - studio.development.bootifulpodcast.online
-  - api.development.bootifulpodcast.online
+    - studio.development.bootifulpodcast.online
+    - api.development.bootifulpodcast.online
+    - configuration.development.bootifulpodcast.online  

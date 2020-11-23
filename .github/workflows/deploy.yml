@@ -25,6 +25,10 @@ env:
   GCLOUD_SA_KEY: ${{ secrets.GCLOUD_SA_KEY }}
   GH_PERSONAL_ACCESS_TOKEN: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true 
+  CONFIGURATION_SERVER_URI_PRODUCTION: https://configuration.bootifulpodcast.online
+  CONFIGURATION_SERVER_URI_DEVELOPMENT: https://configuration.development.bootifulpodcast.online
+  GKE_CLUSTER_NAME_PRODUCTION: bootiful-podcast-production
+  GKE_CLUSTER_NAME_DEVELOPMENT: bootiful-podcast-development
 
 
 on:
@@ -43,9 +47,7 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: "Setup Initial Environment"
-        run: |
-          source $GITHUB_WORKSPACE/.github/workflows/bp_mode.sh
+      - uses: bootiful-podcast/bp-mode-github-action@v34
 
       - name: Setup GCP environment
         uses: GoogleCloudPlatform/github-actions@0.1.2
@@ -71,14 +73,27 @@ jobs:
 
       - name: Deploy Spring Cloud Config Server
         run: |
-          source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
+          
+          source $GITHUB_WORKSPACE/.github/workflows/config_server_wait.sh
+          
           deploy_system_app configuration-service
+          
+          wait_for_config_server_external_ip
 
-      - name: Connect to Config Server for Configuration
-        run: |
-          source $GITHUB_WORKSPACE/.github/workflows/config_client.sh
-          install_config_client_cli
-          hydrate_environment_from_config_server
+          # CONFIG_IP=$( kubectl get services/configuration  -o json | jq '.spec.clusterIP' -r )
+          CONFIG_IP=$( kubectl get svc configuration --output="jsonpath={.status.loadBalancer.ingress[0].ip}" )
+          
+          echo "The configuration service lives at ${CONFIG_IP}. "
+          echo "CONFIGURATION_SERVER_HOST=${CONFIG_IP}" >> $GITHUB_ENV 
+
+
+      - uses: joshlong/config-client-github-action@v29
+        with:
+          config-server-uri: http://${CONFIGURATION_SERVER_HOST}
+          config-server-username: ${{ secrets.CONFIGURATION_SERVER_USERNAME  }}
+          config-server-password: ${{ secrets.CONFIGURATION_SERVER_PASSWORD  }}
+          config-server-application-id: deployment
+          config-server-profile: ${{ env.BP_MODE_LOWERCASE }}
 
       - name: Deploy
         run: |

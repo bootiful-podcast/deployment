@@ -8,6 +8,13 @@ metadata:
   name: bp
 spec:
   rules:
+    
+    - host: configuration.bootifulpodcast.online
+      http:
+        paths:
+          - backend:
+              serviceName: configuration
+              servicePort: 80
 
     - host: api.bootifulpodcast.online
       http:

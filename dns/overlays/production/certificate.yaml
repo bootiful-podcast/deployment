@@ -6,3 +6,4 @@ spec:
   domains:
     - studio.bootifulpodcast.online
     - api.bootifulpodcast.online
+    - configuration.bootifulpodcast.online    
