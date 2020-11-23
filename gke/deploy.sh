@@ -13,7 +13,6 @@ function deploy_new_gke_cluster() {
     --addons HorizontalPodAutoscaling,HttpLoadBalancing --enable-autoupgrade --enable-autorepair --max-surge-upgrade 1 --max-unavailable-upgrade 0
 
   echo "running after the cluster has been initiated..."
-  #  ./deploy_bp_externaldns.sh
 }
 
 gcloud container clusters list | grep $GKE_CLUSTER_NAME || deploy_new_gke_cluster

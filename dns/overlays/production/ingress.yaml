@@ -8,22 +8,22 @@ metadata:
   name: bp
 spec:
   rules:
-    
-    - host: configuration.bootifulpodcast.online
+
+    - host: configuration.bootifulpodcast.fm
       http:
         paths:
           - backend:
               serviceName: configuration
               servicePort: 80
 
-    - host: api.bootifulpodcast.online
+    - host: api.bootifulpodcast.fm
       http:
         paths:
           - backend:
               serviceName: api
               servicePort: 80
 
-    - host: studio.bootifulpodcast.online
+    - host: studio.bootifulpodcast.fm
       http:
         paths:
           - backend:

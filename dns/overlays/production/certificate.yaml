@@ -4,6 +4,6 @@ metadata:
   name: bootiful-podcast-production-certificate
 spec:
   domains:
-    - studio.bootifulpodcast.online
-    - api.bootifulpodcast.online
-    - configuration.bootifulpodcast.online    
+    - studio.bootifulpodcast.fm
+    - api.bootifulpodcast.fm
+    - configuration.bootifulpodcast.fm
