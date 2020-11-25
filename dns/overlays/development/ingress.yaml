@@ -9,6 +9,13 @@ metadata:
 spec:
   rules:
 
+  - host: development.bootifulpodcast.fm
+    http:
+      paths:
+      - backend:
+          serviceName: site
+          servicePort: 80
+
   - host: configuration.development.bootifulpodcast.fm
     http:
       paths:

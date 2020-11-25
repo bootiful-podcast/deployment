@@ -1,18 +1,5 @@
 name: Deploy Infrastructure
 
-
-# TODO in theory we could seed this build with ONLY configuration_server_*, and with gke_*. \
-# > todo And even those don't need to be defined up here. they could be dynamic based on whether it's a push or a release using the eval trick
-#
-# so:
-# deploy GKE
-# deploy config server
-# use GACC to talk to config server and get env vars for RMQ and PSQL
-# deploy RMQ
-# deploy PSQL
-
-## every other app would only ever need the CONFIGURATION_SERVER_* bits
-
 env:
   GIT_PASSWORD: ${{ secrets.GIT_PASSWORD }}
   GIT_USERNAME: ${{ secrets.GIT_USERNAME }}

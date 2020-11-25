@@ -6,4 +6,5 @@ spec:
   domains:
     - studio.development.bootifulpodcast.fm
     - api.development.bootifulpodcast.fm
-    - configuration.development.bootifulpodcast.fm  
+    - configuration.development.bootifulpodcast.fm
+    - development.bootifulpodcast.fm
