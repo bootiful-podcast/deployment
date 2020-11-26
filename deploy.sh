@@ -19,6 +19,8 @@ deploy_system_app studio-v2
 deploy_system_app api-v2
 deploy_system_app site-generator-v2
 deploy_system_app processor-v2
+deploy_system_app site-v1
+
 
 ## TODO   We don't know how long it'll take for all the various apps to spin up \
 #         and register healthy on their health checks so that DNS/ingress work out.
