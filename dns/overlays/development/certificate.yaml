@@ -4,7 +4,7 @@ metadata:
   name: bootiful-podcast-development-certificate
 spec:
   domains:
+    - development.bootifulpodcast.fm
     - studio.development.bootifulpodcast.fm
     - api.development.bootifulpodcast.fm
     - configuration.development.bootifulpodcast.fm
-    - development.bootifulpodcast.fm
