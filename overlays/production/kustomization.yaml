@@ -1,0 +1,17 @@
+---
+bases:
+  - ../development/
+
+resources:
+  - namespace.yaml
+#  - backup_pvc.yaml
+  - certificate.yaml
+  - ingress.yaml
+
+commonLabels:
+  env: production
+
+patchesStrategicMerge:
+  - backup_pvc.yaml
+
+namespace: production  
