@@ -20,6 +20,8 @@ export BP_RABBITMQ_MANAGEMENT_PASSWORD=${BP_RABBITMQ_MANAGEMENT_PASSWORD:-rmqpw}
 export POSTGRES_DB=${POSTGRES_DB:-bp}
 export POSTGRES_USER=${POSTGRES_USER:-bp}
 export POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-pw}
+export FS_NAME="bp-${BP_MODE_LOWERCASE}-backup-disk"
+export RESERVED_IP_NAME=bootiful-podcast-${BP_MODE_LOWERCASE}-ip
 
 echo "Deploying to $BP_MODE_LOWERCASE "
 
@@ -38,14 +40,14 @@ function deploy_new_gke_cluster() {
   echo "running after the cluster has been initiated..."
 }
 
-gcloud container clusters list | grep $GKE_CLUSTER_NAME || deploy_new_gke_cluster
+gcloud container clusters list | grep $GKE_CLUSTER_NAME || \
+ deploy_new_gke_cluster
 
+gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME || \
+  gcloud compute addresses create $RESERVED_IP_NAME --global
 
-
-echo "Backup PVC..."
-FS_NAME="bp-${BP_MODE_LOWERCASE}-backup-disk"
-gcloud --quiet beta compute disks describe $FS_NAME --zone $GCLOUD_ZONE || gcloud --quiet beta compute disks create $FS_NAME --type=pd-balanced --size=200GB --zone $GCLOUD_ZONE
-
+gcloud --quiet beta compute disks describe $FS_NAME --zone $GCLOUD_ZONE || \
+  gcloud --quiet beta compute disks create $FS_NAME --type=pd-balanced --size=200GB --zone $GCLOUD_ZONE
 
 ## Setup a literal values file for the secrets 
 
