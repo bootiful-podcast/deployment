@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-set -o pipefail
 
 echo "Manually starting an instance of the backup-cronjob"
 JOB_ID=backup-cronjob-initial-run-job-${RANDOM}

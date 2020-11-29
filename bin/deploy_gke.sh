@@ -1,7 +1,14 @@
-#!/usr/bin/env bash
-
+#!/bin/bash
 set -e
-set -o pipefail
+
+## This build assumes the use of Kustomize 
+## https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/
+#export BP_MODE_LOWERCASE=${BP_MODE_LOWERCASE:-development}
+#export GCLOUD_ZONE=us-west1-b
+#export GKE_CLUSTER_NAME=bootiful-podcast-${BP_MODE_LOWERCASE}
+#export GCLOUD_PROJECT=${GCLOUD_PROJECT:-bootiful}
+
+echo "Deploying to $BP_MODE_LOWERCASE "
 
 function deploy_new_gke_cluster() {
   gcloud --quiet beta container --project $GCLOUD_PROJECT clusters create "${GKE_CLUSTER_NAME}" \

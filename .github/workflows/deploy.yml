@@ -54,7 +54,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           echo "Deploying the GKE Cluster itself"
-          ./gke/deploy.sh
+          ./bin/deploy_gke.sh
 
       - run: |
           gcloud container clusters get-credentials $GKE_CLUSTER_NAME --zone "$GCLOUD_ZONE" --project $GCLOUD_PROJECT
@@ -86,5 +86,5 @@ jobs:
 
       - name: Deploy
         run: |
-          ${GITHUB_WORKSPACE}/deploy.sh
+          ${GITHUB_WORKSPACE}/bin/deploy_system.sh
 
