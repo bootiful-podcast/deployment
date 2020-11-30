@@ -5,8 +5,8 @@ bases:
 resources:
   - namespace.yaml
 #  - backup_pvc.yaml
-  - certificate.yaml
-  - ingress.yaml
+#  - certificate.yaml
+#  - ingress.yaml
 
 commonLabels:
   env: production

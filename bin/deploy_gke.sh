@@ -9,6 +9,12 @@ set -e
 #export GCLOUD_PROJECT=${GCLOUD_PROJECT:-bootiful}
 
 echo "Deploying to $BP_MODE_LOWERCASE "
+#
+#gcloud container clusters create cluster-name \
+#  --enable-ip-alias --cluster-ipv4-cidr=10.0.0.0/21 \
+#  --create-subnetwork=name='cluster-name-subnet',range=10.4.32.0/27 \
+#  --services-ipv4-cidr=10.4.0.0/19 --default-max-pods-per-node=110 \
+#  --zone=compute-zone
 
 function deploy_new_gke_cluster() {
   gcloud --quiet beta container --project $GCLOUD_PROJECT clusters create "${GKE_CLUSTER_NAME}" \
