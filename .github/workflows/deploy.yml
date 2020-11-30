@@ -75,8 +75,7 @@ jobs:
           
           wait_for_config_server_external_ip
 
-          # CONFIG_IP=$( kubectl get services/configuration  -o json | jq '.spec.clusterIP' -r )
-          CONFIG_IP=$( kubectl get svc configuration --output="jsonpath={.status.loadBalancer.ingress[0].ip}" )
+          CONFIG_IP=$( kubectl get svc configuration -n "$BP_MODE_LOWERCASE" --output="jsonpath={.status.loadBalancer.ingress[0].ip}" )
           
           echo "The configuration service lives at ${CONFIG_IP}. "
           echo "CONFIGURATION_SERVER_HOST=${CONFIG_IP}" >> $GITHUB_ENV 
