@@ -19,7 +19,7 @@ The following services depend on the RabbitMQ instance:
 
 * `api`
 * `processor` 
-* `site-generator`
+* `site`
 
 A logical next step would be to investigate using 
 [the OSS RabbitMQ Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/install-operator.html) 
