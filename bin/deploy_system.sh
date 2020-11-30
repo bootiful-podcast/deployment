@@ -41,7 +41,7 @@ POSTGRES_USER=${POSTGRES_USER}
 POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 EOF
 
-kubectl apply -k ${OD} --prune --all
+kubectl apply -k ${OD}
 
 rm $RMQ_SECRETS_FN
 rm $PSQL_SECRETS_FN
