@@ -61,6 +61,12 @@ jobs:
 
       - name: Deploy Spring Cloud Config Server
         run: |
+          kubectl create ns production
+          kubectl create ns development
+
+
+      - name: Deploy Spring Cloud Config Server
+        run: |
           
           source $GITHUB_WORKSPACE/.github/workflows/repository_utils.sh
           source $GITHUB_WORKSPACE/.github/workflows/config_server_wait.sh
