@@ -8,12 +8,12 @@ function wait_for_config_server_external_ip() {
   IP_OF_CONFIG_SERVER=""
   
   while [ true ]; do
-    kubectl get  deployments/configuration  && IP_OF_CONFIG_SERVER="$(kubectl get svc "$SVC_NAME" --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")" && break   \
+    kubectl get  deployments/configuration -n "$BP_MODE_LOWERCASE" && IP_OF_CONFIG_SERVER="$(kubectl get svc "$SVC_NAME" -n "$BP_MODE_LOWERCASE" --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")" && break   \
       || sleep 10
   done
 
   while true; do
-      successCond="$(kubectl get svc "$SVC_NAME"  --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")"
+      successCond="$(kubectl get svc "$SVC_NAME" -n "$BP_MODE_LOWERCASE"  --template="{{range .status.loadBalancer.ingress}}{{.ip}}{{end}}")"
       if [[ -z "$successCond" ]]; then
           echo "Waiting for endpoint readiness..."
           sleep 10
