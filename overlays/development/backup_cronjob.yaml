@@ -18,7 +18,7 @@ spec:
               configMap:
                 name: backup-cronjob-configmap
                 items:
-                  - key: "backup.sh"
+                  - key: "backup_db.sh"
                     path: "backup.sh"
 
             - name: bp-backup-volume
