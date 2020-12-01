@@ -20,9 +20,7 @@ export FS_NAME="bp-${BP_MODE_LOWERCASE}-backup-disk"
 
 echo "Deploying to $BP_MODE_LOWERCASE "
 
-# export RESERVED_IP_NAME=bootiful-podcast-${BP_MODE_LOWERCASE}-ip
-# gcloud compute addresses list --format json | jq '.[].name' -r | grep $RESERVED_IP_NAME || \
-#    gcloud compute addresses create $RESERVED_IP_NAME --global
+
 
 gcloud --quiet beta compute disks describe $FS_NAME --zone $GCLOUD_ZONE || \
   gcloud --quiet beta compute disks create $FS_NAME --type=pd-balanced --size=200GB --zone $GCLOUD_ZONE
