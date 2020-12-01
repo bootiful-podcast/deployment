@@ -47,5 +47,5 @@ rm $RMQ_SECRETS_FN
 rm $PSQL_SECRETS_FN
 
 
-cd ${ROOT_DIR}/../bin/
+ cd ${GITHUB_WORKSPACE}/bin/
 ./run_postgresql_db_backup.sh
