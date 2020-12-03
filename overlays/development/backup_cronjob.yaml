@@ -19,7 +19,7 @@ spec:
 
             - name: bp-backup-volume
               persistentVolumeClaim:
-                claimName: bp-backup-pvc
+                claimName: bp-backup-development-pvc
 
           containers:
             - name: backup
