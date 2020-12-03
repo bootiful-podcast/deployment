@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: bp-backup-pv
+  name: bp-backup-development-pv
 spec:
   storageClassName: ""
   capacity:
@@ -9,8 +9,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef:
-#    namespace: development
-    name: bp-backup-pvc
+    name: bp-backup-development-pvc
   gcePersistentDisk:
     pdName: bp-development-backup-disk
     fsType: ext4
@@ -19,7 +18,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: bp-backup-pvc
+  name: bp-backup-development-pvc
 spec:
   storageClassName: ""
   accessModes:

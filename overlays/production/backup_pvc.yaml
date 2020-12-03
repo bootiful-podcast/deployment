@@ -9,7 +9,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef:
-    #    namespace: development
     name: bp-backup-production-pvc
   gcePersistentDisk:
     pdName: bp-production-backup-disk
