@@ -4,6 +4,8 @@ bases:
 
 resources:
   - namespace.yaml
+  - backup_pvc.yaml
+  - backup_cronjob.yaml
 #  - certificate.yaml
 #  - ingress.yaml
 #  - backup_pvc.yaml
@@ -11,8 +13,8 @@ resources:
 commonLabels:
   env: production
 
-patchesStrategicMerge:
-  - backup_pvc.yaml
+#patchesStrategicMerge:
+#  - backup_pvc.yaml
 
 namespace: production  
 
