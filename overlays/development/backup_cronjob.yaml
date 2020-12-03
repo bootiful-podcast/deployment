@@ -6,14 +6,10 @@ spec:
   # should run every 12 hours of every day
   schedule: "0 */12 * * *"
   jobTemplate:
-
     spec:
-
       template:
         spec:
-
           volumes:
-
             - name: backup-cronjob-configmap-volume
               configMap:
                 name: backup-cronjob-configmap
