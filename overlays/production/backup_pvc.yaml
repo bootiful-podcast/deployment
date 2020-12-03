@@ -9,9 +9,21 @@ spec:
   accessModes:
     - ReadWriteOnce
   claimRef:
-    namespace: default
+    #    namespace: development
     name: bp-backup-pvc
   gcePersistentDisk:
     pdName: bp-production-backup-disk
     fsType: ext4
     readOnly: false
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bp-backup-pvc
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 200Gi
