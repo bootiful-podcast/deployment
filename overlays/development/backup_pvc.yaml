@@ -11,7 +11,7 @@ spec:
   claimRef:
     name: bp-backup-development-pvc
   gcePersistentDisk:
-    pdName: bp-development-backup-disk
+    pdName: bp-backup-development-disk
     fsType: ext4
     readOnly: false
 ---
