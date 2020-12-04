@@ -18,9 +18,10 @@ spec:
                     path: "backup.sh"
 
             - name: bp-backup-volume
-              persistentVolumeClaim:
-                claimName: bp-backup-development-pvc
-
+              gcePersistentDisk:
+                pdName: bp-backup-development-disk
+#              persistentVolumeClaim:
+#                claimName: bp-backup-development-pv
           containers:
             - name: backup
               image: ubuntu:20.10
