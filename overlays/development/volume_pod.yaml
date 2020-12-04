@@ -3,6 +3,7 @@ kind: Pod
 
 metadata:
   name: dbinspector
+  namespace: development
   labels:
     name: dbinspector
 spec:
