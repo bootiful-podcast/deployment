@@ -20,8 +20,6 @@ spec:
             - name: bp-backup-volume
               gcePersistentDisk:
                 pdName: bp-backup-development-disk
-#              persistentVolumeClaim:
-#                claimName: bp-backup-development-pv
           containers:
             - name: backup
               image: ubuntu:20.10
