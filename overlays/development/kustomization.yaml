@@ -4,6 +4,7 @@ resources:
   - rabbitmq.yaml
   - backup_cronjob.yaml
   - postgresql.yaml
+  #  - volume_pod.yaml
   #  - backup_pvc.yaml
 
 namespace: development

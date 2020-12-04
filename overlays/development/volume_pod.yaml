@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+
+metadata:
+  name: dbinspector
+  labels:
+    name: dbinspector
+spec:
+  volumes:
+    - name: db-backup-pd
+      gcePersistentDisk:
+        readOnly: true
+        pdName: bp-backup-development-disk
+  containers:
+  - name: dbinspector
+    image: nginx
+    ports:
+      - containerPort: 8080
+    volumeMounts:
+      - mountPath: /db
+        name: db-backup-pd
