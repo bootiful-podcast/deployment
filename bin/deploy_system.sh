@@ -5,7 +5,7 @@ set -e
 ## https://kubernetes.io/docs/tasks/manage-kubernetes-objects/kustomization/
 export BP_MODE_LOWERCASE=${BP_MODE_LOWERCASE:-development}
 export ROOT_DIR=${PWD}
-export GCLOUD_ZONE=us-west1-b
+#export GCLOUD_ZONE=us-west1-b
 export OD=${ROOT_DIR}/overlays/${BP_MODE_LOWERCASE}
 export GKE_CLUSTER_NAME=bootiful-podcast-${BP_MODE_LOWERCASE}
 export GCLOUD_PROJECT=${GCLOUD_PROJECT:-bootiful}
