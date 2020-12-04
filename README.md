@@ -16,7 +16,7 @@ kubectl port-forward $rmq_id 15672 5672
 ```
 You can then visit [the management console](http://localhost:15672). 
 
-The following services depend on the RabbitMQ instance:
+The following services depend on the RabbitMQ instance: 
 
 * `api`
 * `processor` 
