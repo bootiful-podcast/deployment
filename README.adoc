@@ -1,0 +1,53 @@
+= Deployment
+
+![API](https://github.com/bootiful-podcast/deployment/workflows/API/badge.svg)
+
+== Description
+
+
+This module stands up foundational infrastructure like the RabbitMQ broker, the PostgreSQL database, etc. This should be the only dependency for any other module in the system. This module uses Kustomize to parameterize the build to support production or development deployments.
+
+=== RabbitMQ
+
+The RabbitMQ service supports the functioning of the whole system.
+It connects the various applications. You can talk to it on your
+local developer machine with port forwarding.
+
+---
+rmq_id=$( k get pods | grep bp-rabbitmq | cut -f1 -d\ )
+kubectl port-forward $rmq_id 15672 5672
+---
+
+You can then visit [the management console](http://localhost:15672).
+
+The following services depend on the RabbitMQ instance:
+
+* `api`
+* `processor`
+* `site`
+* `studio`
+
+
+A logical next step would be to investigate using
+https://www.rabbitmq.com/kubernetes/operator/install-operator.html[the OSS RabbitMQ Kubernetes Operator] to deploy a RabbitMQ instance.
+
+=== PostgreSQL
+
+The PostgresSQl service stores working state for the system.
+Run `deploy_bp_postgresql.sh` to get an application that's
+running on Kubernetes. You can talk to it on your local developer
+machine by doing some port forwarding.
+
+---
+pg_id=$( k get pods | grep bp-postgresql | cut -f1 -d\ )
+kubectl port-forward $pg_id 5432
+---
+
+The following services depend on the RabbitMQ instance:
+
+* `api`
+* `processor`
+* `studio`
+* `site`
+
+
