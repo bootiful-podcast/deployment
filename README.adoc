@@ -1,6 +1,6 @@
 = Deployment
 
-![API](https://github.com/bootiful-podcast/deployment/workflows/API/badge.svg)
+image::https://github.com/bootiful-podcast/deployment/workflows/Deploy/badge.svg[Status]
 
 == Description
 
