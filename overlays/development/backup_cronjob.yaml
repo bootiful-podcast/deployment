@@ -18,6 +18,7 @@ spec:
                     path: "backup.sh"
 
             - name: bp-backup-volume
+#              emptyDir: {}  # todo use this with initContainers
               gcePersistentDisk:
                 pdName: bp-backup-development-disk
           containers:
