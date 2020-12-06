@@ -45,3 +45,6 @@ rm $PSQL_SECRETS_FN
 
 cd ${GITHUB_WORKSPACE}/bin/
 ./run_postgresql_db_backup.sh
+
+
+
