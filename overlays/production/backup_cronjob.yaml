@@ -18,9 +18,8 @@ spec:
                     path: "backup.sh"
 
             - name: bp-backup-volume
-              persistentVolumeClaim:
-                claimName: bp-backup-production-pvc
-
+              gcePersistentDisk:
+                pdName: bp-backup-production-disk
           containers:
             - name: backup
               image: ubuntu:20.10
@@ -37,3 +36,4 @@ spec:
                 - name: bp-backup-volume
                   mountPath: "/backups/"
           restartPolicy: OnFailure
+
