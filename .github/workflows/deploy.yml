@@ -96,8 +96,9 @@ jobs:
           ${GITHUB_WORKSPACE}/bin/deploy_system.sh
 
            # now we kick of env-specific builds for the rest of the service
-           # site-v1 api-v2 studio-v2
-           for i in processor-v2
+           #
+           for i in processor-v2 site-v1 api-v2 studio-v2
            do
             deploy_system_app $i
            done
+
