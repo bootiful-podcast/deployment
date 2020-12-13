@@ -2,7 +2,7 @@
 bases:
   - ../development/
 
-resources:
+patchesStrategicMerge:
   - namespace.yaml
   - backup_cronjob.yaml
 
