@@ -60,4 +60,4 @@ backup_db
 
 ls -la $BACKUPS_DIR/
 
-sleep 300
+#sleep 300
