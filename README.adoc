@@ -12,6 +12,7 @@ This module stands up foundational infrastructure like the RabbitMQ broker, the 
 
 The system installs RabbitMQ, PostgresSQL, environment-specific Kubernetes namespaces, a Kubernetes `CronJob`, and a Kubernetes Persistent Volume Claim (PVC) to store the backup data for that `CronJob`.
 
+
 === RabbitMQ
 
 The RabbitMQ service supports the functioning of the whole system.
