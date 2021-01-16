@@ -2,8 +2,8 @@
 resources:
   - namespace.yaml
   - rabbitmq.yaml
-  - backup_cronjob.yaml
-  - postgresql.yaml
+  # - backup_cronjob.yaml
+  # - postgresql.yaml
 
 namespace: development
 

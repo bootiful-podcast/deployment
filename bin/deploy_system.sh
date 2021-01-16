@@ -43,8 +43,8 @@ kubectl apply -k ${OD}
 rm $RMQ_SECRETS_FN
 rm $PSQL_SECRETS_FN
 
-cd ${GITHUB_WORKSPACE}/bin/
-./run_postgresql_db_backup.sh
+# cd ${GITHUB_WORKSPACE}/bin/
+# ./run_postgresql_db_backup.sh
 
 
 
