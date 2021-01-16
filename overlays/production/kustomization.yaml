@@ -5,8 +5,8 @@ bases:
 resources:
   - namespace.yaml
 
-patchesStrategicMerge:
-  - backup_cronjob.yaml
+# patchesStrategicMerge:
+#   - backup_cronjob.yaml
 
 
 commonLabels:
