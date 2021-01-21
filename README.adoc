@@ -5,6 +5,7 @@ image::https://github.com/bootiful-podcast/deployment/workflows/Deploy/badge.svg
 == Description
 
 
+
 This module stands up foundational infrastructure like the RabbitMQ broker, the PostgreSQL database, etc. This should be the only dependency for any other module in the system. This module uses Kustomize to parameterize the build to support production or development deployments.
 
 
