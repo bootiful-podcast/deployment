@@ -13,13 +13,3 @@ secretGenerator:
 
   - name: postgresql-secrets
     env: postgresql-secrets.env
-
-# configMapGenerator:
-
-#   - name: postgresql-init-db-configmap
-#     files:
-#       - bin/init_db.sh
-
-#   - name: backup-cronjob-configmap
-#     files:
-#       - bin/backup_db.sh
